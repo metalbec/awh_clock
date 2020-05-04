@@ -1,21 +1,96 @@
-﻿<script>
-function UserAction() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("output").innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("GET", "http://127.0.0.1:5000/api/currenttime", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
+﻿
+<script>
+    function UserAction() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let responseTime = JSON.parse(this.responseText);
+                console.log(responseTime);
+                document.getElementById("output").innerHTML = responseTime.utcTime;
+                GetRequests();
+            }
+        };
 
-}
+        var dropDown = document.getElementById("ddltimezone");
+        var selectedZone = dropDown.options[dropDown.selectedIndex].value;
+        xhttp.open("GET", "http://127.0.0.1:5000/api/currenttime?ti=" + selectedZone, true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+
+
+    }
+    function GetRequests() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let responseList = JSON.parse(this.responseText);
+                document.getElementById('requestTable').innerHTML = '<thead><tr><td>Client Ip</td><td>Request Time(server)</td><td>Returned Time</td><td>Time Zone</td></tr></thead>';
+                for (var i = 0; i < responseList.length; i++) {
+                    var oResponse = responseList[i];
+                    document.getElementById('requestTable').innerHTML = document.getElementById('requestTable').innerHTML + "<tr><td>"
+                        + oResponse.clientIp + "</td><td>" + oResponse.time + "</td><td>" + oResponse.utcTime + "</td><td>" + oResponse.timeZone + "</td></tr>";
+                }
+            }
+        };
+        xhttp.open("GET", "http://127.0.0.1:5000/api/currenttime/GetRequests", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+    }
+
+    function GetTimeZones() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let responseList = JSON.parse(this.responseText);
+                var dropDown = document.getElementById("ddltimezone");
+                var defaultOption = document.createElement("option");
+                defaultOption.text = "Server Time";
+                defaultOption.value = "-1";
+                dropDown.add(defaultOption);
+
+                for (var i = 0; i < responseList.length; i++) {
+                    var oTimeZone = responseList[i];
+                    var ddlOption = document.createElement("option");
+                    ddlOption.text = oTimeZone.displayName;
+                    ddlOption.value = oTimeZone.id;
+
+                    dropDown.add(ddlOption);
+                }              
+            }
+        };
+        xhttp.open("GET", "http://127.0.0.1:5000/api/currenttime/GetTimeZones", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send();
+        GetRequests();
+    }
+
 </script>
 
-<h2>AWH Clockwork Project @ViewData["Version"] on @ViewData["Runtime"]!</h2>
+<body onload="GetTimeZones();">
+    <div id="div1">
+        <h2 class="title">AWH Clockwork Project @ViewData["Version"] on @ViewData["Runtime"]!</h2>
+        <p id="para1">Choose your time zone</p>  
+        <select id="ddltimezone">
+        </select>
+        <button class="button" type="submit" onclick="UserAction()">Get the time</button>
+        <p id="output"> </p>
 
+    </div>
 
-<button type="submit" onclick="UserAction()">Get the time</button>
+    <div class="table">
+        <table id="requestTable" border="1">           
+            <thead>
+            <tr>
+                <td>Client Ip</td>
+                <td>Request Time(server)</td>
+                <td>Returned Time</td>
+                <td>Time Zone</td>
+                </tr>
+                </thead>
+        </table>
+        <p id="responseListHolder"> </p>
 
-<p id="output"></p>
+    </div>
+
+</body>
+

@@ -1,7 +1,8 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clockwork.API", "Clockwork.API\Clockwork.API.csproj", "{1B8B9C9D-EB80-405D-A2B4-6FEE566D8EC9}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clockwork.API", "Clockwork.API\Clockwork.API.csproj", "{1B8B9C9D-EB80-405D-A2B4-6FEE566D8EC9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clockwork.Web", "Clockwork.Web\Clockwork.Web.csproj", "{6C746601-B1E6-4A18-8FCB-55582976384F}"
 EndProject
@@ -25,5 +26,11 @@ Global
 		{7F442E44-EDD0-4605-BCDD-603BAA9984C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F442E44-EDD0-4605-BCDD-603BAA9984C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F442E44-EDD0-4605-BCDD-603BAA9984C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {425CE01B-BF17-41C6-BCFB-7D8A584BE07A}
 	EndGlobalSection
 EndGlobal

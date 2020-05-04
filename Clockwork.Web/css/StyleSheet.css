@@ -1,0 +1,84 @@
+﻿body {
+    background-color: cyan;
+    align-items:center;
+    display:inline-block;
+    background-image:url(clock.png);
+}
+
+#div1 {
+    font-family: 'Bookman Old Style', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.title {
+    font-size: 20px;
+    text-align: center;
+    color: darkmagenta;
+}
+
+#para1 {
+    text-align:left;
+    color: darkmagenta;
+    font-size: 20px;
+  
+}
+
+#ddltimezone {
+    
+    background-color:aquamarine;
+    color: darkmagenta;
+    height: 50px;
+    font-weight:bold;
+    font-size:larger;
+    text-align:center;
+    border-style:groove;
+    border-width: 2px;
+    border-radius: 5px; 
+    align-self:center;
+}
+
+.button {
+    background-color: blueviolet;
+    border-radius: 10px;
+    border: 2px solid #008CBA;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: underline;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+
+
+.button:hover {
+    background-color: cornflowerblue;
+    color: white;
+}
+
+#requestTable {
+    background-color:lightskyblue;
+    color:darkmagenta;
+    font-weight:bold;
+    flex:inherit;
+    text-align:left;
+    
+}
+
+
+tr {
+    padding: 10px 5px;
+}
+tr:hover {
+    background-color:cornflowerblue;
+
+}
+
+#output {
+    font-size: 20px;
+    color: darkmagenta;
+    font-weight: bold;
+
+}

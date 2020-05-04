@@ -16,12 +16,13 @@ namespace Clockwork.API.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     ClientIp = table.Column<string>(nullable: true),
                     Time = table.Column<DateTime>(nullable: false),
-                    UTCTime = table.Column<DateTime>(nullable: false)
+                    UTCTime = table.Column<DateTime>(nullable: false),
+                    TimeZone = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CurrentTimeQueries", x => x.CurrentTimeQueryId);
-                });
+                });;
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
